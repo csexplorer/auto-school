@@ -44,7 +44,7 @@ class SubjectTeachersSearch extends SubjectTeachers
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $query,
+            'query' => $query->where(['not', ['teacher_id' => 5]]),
         ]);
 
         $this->load($params);

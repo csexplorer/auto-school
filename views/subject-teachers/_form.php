@@ -23,7 +23,7 @@ use app\models\Subject;
     ) ?>
 
     <?= $form->field($model, 'teacher_id')->dropDownList(
-        ArrayHelper::map(Teacher::find()->all(), 'id', 'last_name'),
+        ArrayHelper::map(Teacher::find()->where(['not', ['id' => 5]])->all(), 'id', 'last_name'),
         [
             'prompt' => "O'qituvchini tanglang",
         ]

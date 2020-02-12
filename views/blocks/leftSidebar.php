@@ -17,6 +17,12 @@ $user = Yii::$app->user;
             <li class="header">ASOSIY MENYULAR</li>
             <? if ($user->can('admin')) : ?>
                 <li>
+                    <a href="<?= Url::to(['teacher/groups']) ?>">
+                        <i class="fa fa-briefcase"></i>
+                        <span>Baholash / Davomat</span>
+                    </a>
+                </li>
+                <li>
                     <a href="<?= Url::to(['category/index']) ?>">
                         <i class="fa fa-briefcase"></i>
                         <span>Kategoriya</span>

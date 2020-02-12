@@ -16,7 +16,7 @@ use app\models\Subject;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'group_id')->dropDownList(
-        ArrayHelper::map(Groups::find()->all(), 'id', 'name'),
+        ArrayHelper::map(Groups::find()->where(['status' => 1])->all(), 'id', 'name'),
         [
             'prompt' => 'Guruhni tanlang',
         ]

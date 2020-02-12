@@ -16,14 +16,14 @@ use app\models\Teacher;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'group_id')->dropDownList(
-        ArrayHelper::map(Groups::find()->all(), 'id', 'name'),
+        ArrayHelper::map(Groups::find()->where(['status' => 1])->all(), 'id', 'name'),
         [
             'prompt' => 'Guruhni tanlang',
         ]
     ) ?>
 
     <?= $form->field($model, 'teacher_id')->dropDownList(
-        ArrayHelper::map(Teacher::find()->all(), 'id', 'last_name'),
+        ArrayHelper::map(Teacher::find()->where(['not', ['id' => 5]])->all(), 'id', 'last_name'),
         [
             'prompt' => "O'qituvchini tanlang",
         ]
