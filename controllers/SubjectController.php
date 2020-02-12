@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Subject;
+use app\models\SubjectTeachers;
 use app\models\SubjectSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -74,9 +75,14 @@ class SubjectController extends Controller
     public function actionCreate()
     {
         $model = new Subject();
+        $sjTchModel = new SubjectTeachers();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            $sjTchModel->teacher_id = 5;
+            $sjTchModel->subject_id = $model->id;
+            if ($sjTchModel->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            };
         }
 
         return $this->render('create', [

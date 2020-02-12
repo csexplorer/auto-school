@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\GroupSubjects;
 use app\models\GroupTeachers;
 use app\models\Student;
+use app\models\Teacher;
 use Yii;
 use app\models\Groups;
 use app\models\GroupsSearch;
@@ -96,25 +97,18 @@ class GroupsController extends Controller
     public function actionCreate()
     {
         $model = new Groups();
-        $grSjModel = new GroupSubjects();
         $grTchModel = new GroupTeachers();
 
-        if ($model->load(Yii::$app->request->post())) {
-            if ($model->save() && $grSjModel->load(Yii::$app->request->post())) {
-                $grSjModel->group_id = $model->id;
-                if ($grSjModel->save(false) && $grTchModel->load(Yii::$app->request->post())) {
-                    $grTchModel->group_id = $model->id;
-                    $grTchModel->save(false);
-                }
-            }
-
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $grTchModel->teacher_id = 5;
+            $grTchModel->group_id = $model->id;
+            if ($grTchModel->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            };
         }
 
         return $this->render('create', [
-            'model' => $model,
-            'grSjModel' => $grSjModel,
-            'grTchModel' => $grTchModel,
+            'model' => $model
         ]);
     }
 
