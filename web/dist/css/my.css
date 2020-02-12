@@ -1,0 +1,6 @@
+.grid-view table td, .grid-view table th {
+    border: 1px solid #000 !important;
+}
+.grid-view table tr:hover, .grid-view table tr:active {
+    background: rgba(222, 233, 033, .3) !important;
+}
