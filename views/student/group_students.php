@@ -9,11 +9,12 @@ use yii\grid\GridView;
 
 $this->title = "Guruh o'quvchilari";
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="student-list">
 
     <p>
-        <?= Html::a("O'quvchi yaratish", ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a("O'quvchi yaratish", ['create', 'group_id' => Yii::$app->request->get()["group_id"]], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

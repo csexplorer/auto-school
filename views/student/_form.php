@@ -8,6 +8,9 @@ use app\models\Groups;
 /* @var $this yii\web\View */
 /* @var $model app\models\Student */
 /* @var $form yii\widgets\ActiveForm */
+
+$group_id = Yii::$app->request->get()['group_id'];
+//var_dump($group_id); exit;
 ?>
 
 <div class="student-form">
@@ -34,6 +37,9 @@ use app\models\Groups;
         ArrayHelper::map(Groups::find()->all(), 'id', 'name'),
         [
             'prompt' => 'Guruhni tanlang',
+            'options' => [
+                    $group_id => ['selected' => true]
+            ]
         ]
     ) ?>
 
