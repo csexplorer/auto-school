@@ -39,12 +39,12 @@ class GroupTeachersSearch extends GroupTeachers
      */
     public function search($params, $condition)
     {
-        $query = GroupTeachers::find()->where($condition);
+        $query = GroupTeachers::find()->where($condition)->andWhere(['not', ['teacher_id' => 5]]);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $query->where(['not', ['teacher_id' => 5]]),
+            'query' => $query,
         ]);
 
         $this->load($params);
